@@ -7,8 +7,7 @@
 </head>
 
 <body>
-    <nav th:replace="~{fragments/navbar :: navbar('books')}"></nav>
-    <h1>Pizzas</h1>
+    <nav th:replace="~{fragments/navbar :: navbar('pizzas')}"></nav>
     <hr />
     <main class="container py-4">
 
@@ -20,8 +19,6 @@
                         <tr>
                             <th>Number</th>
                             <th>Name</th>
-                            <th>Description</th>
-                            <th>Photo</th>
                             <th>Price</th>
                             <th>Details</th>
                         </tr>
@@ -30,14 +27,6 @@
                         <tr th:each="pizza : ${pizzas}" th:object="${pizza}">
                             <td>[[*{id}]]</td>
                             <td>[[*{name}]]</td>
-                            <td>[[*{description}]]</td>
-                            <td>
-                                <img th:if="${pizza.photo != null and !#strings.isEmpty(pizza.photo)}" th:src="*{photo}"
-                                    th:alt="*{name}"
-                                    style="width: 72px; height: 72px; object-fit: cover; border-radius: 8px;" />
-                                <span th:unless="${pizza.photo != null and !#strings.isEmpty(pizza.photo)}">No
-                                    photo</span>
-                            </td>
                             <td>[[*{price}]]</td>
                             <td>
                                 <a th:href="@{/pizzas/{id}(id=*{id})}" class="btn btn-sm btn-outline-primary">
@@ -48,7 +37,7 @@
                     </tbody>
                 </table>
 
-                <p th:text="No pizzas available at the moment .... soryy" th:unless="${books.size() > 0}"></p>
+                <p th:text="No pizzas available at the moment .... soryy" th:unless="${pizzas.size() > 0}"></p>
 
             </div>
 
