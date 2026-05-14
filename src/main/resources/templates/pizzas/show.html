@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/resources :: headTags}"></div>
+    <title>Pizza : [[${pizza.name}]]</title>
+</head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar('pizzas')}"></nav>
+    <main class="container py-4" th:object="${pizza}">
+
+        <hr />
+
+        <div class="mb-3">
+            <a th:href="@{/pizzas}" class="btn btn-secondary">← Back to list</a>
+        </div>
+
+        <section class="row">
+
+            <div class="col-md-4">
+                <img th:if="*{photo != null and !#strings.isEmpty(photo)}" th:src="*{photo}" th:alt="*{name}"
+                    class="img-fluid rounded shadow" />
+                <div th:unless="*{photo != null and !#strings.isEmpty(photo)}"
+                    class="bg-secondary text-white d-flex align-items-center justify-content-center rounded"
+                    style="height: 260px;">
+                    No photo
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <h1 class="fw-bold mb-3">[[*{name}]]</h1>
+                <p class="lead mb-4">[[*{description}]]</p>
+                <p class="fs-4 fw-semibold text-success">€ [[*{price}]]</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <div th:replace="~{fragments/resources :: scripts}"></div>
+</body>
+
+</html>
