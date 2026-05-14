@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/resources :: headTags}"></div>
+    <title>Pizzas</title>
+</head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar('books')}"></nav>
+    <h1>Pizzas</h1>
+    <hr />
+    <main class="container py-4">
+
+
+        <section class="row">
+            <div class="col-12">
+                <table class="table" th:if="${pizzas.size() > 0}">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Photo</th>
+                            <th>Price</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pizza : ${pizzas}" th:object="${pizza}">
+                            <td>[[*{id}]]</td>
+                            <td>[[*{name}]]</td>
+                            <td>[[*{description}]]</td>
+                            <td>
+                                <img th:if="${pizza.photo != null and !#strings.isEmpty(pizza.photo)}" th:src="*{photo}"
+                                    th:alt="*{name}"
+                                    style="width: 72px; height: 72px; object-fit: cover; border-radius: 8px;" />
+                                <span th:unless="${pizza.photo != null and !#strings.isEmpty(pizza.photo)}">No
+                                    photo</span>
+                            </td>
+                            <td>[[*{price}]]</td>
+                            <td>
+                                <a th:href="@{/pizzas/{id}(id=*{id})}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fa-thin fa-pizza"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p th:text="No pizzas available at the moment .... soryy" th:unless="${books.size() > 0}"></p>
+
+            </div>
+
+        </section>
+    </main>
+    <div th:replace="~{fragments/resources :: scripts}"></div>
+</body>
+
+</html>
