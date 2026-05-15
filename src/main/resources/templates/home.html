@@ -3,111 +3,93 @@
 
 <head>
     <div th:replace="~{fragments/resources :: headTags}"></div>
+    <link th:rel="stylesheet" th:href="@{/css/home.css}" />
 </head>
 
 <body>
     <nav th:replace="~{fragments/navbar :: navbar('home')}"></nav>
-    <div class="container py-4">
-        <h1>Home</h1>
-        <hr />
+    <section class="home-story">
+        <div class="container py-3">
+            <div class="story-card">
+                <section class="about-pizzeria">
 
-            <section class="about-pizzeria">
-            
-                <h1>Welcome to <strong>Mamma Rosa</strong></h1>
-            
-                <p>
-                    At <strong>Mamma Rosa</strong>, pizza is more than food —
-                    <em>it is memory, tradition, and family.</em>
-                </p>
-            
-                <br>
-            
-                <p>
-                    Our story begins in a small village where life was simple, people worked hard,
-                    and <strong>nothing was ever wasted.</strong>
-                    We come from humble rural roots, where the land gave us everything and
-                    respect for food was part of everyday life.
-                </p>
-            
-                <br>
-            
-                <p>
-                    My grandfather worked the fields from sunrise to sunset, growing vegetables, olives, tomatoes,
-                    and everything the seasons could offer.
-                    My other grandfather repaired and handmade shoes for the hardworking people of the village,
-                    and many times they would pay not with money, but with their own produce:
-                </p>
-            
-                <ul>
-                    <li>Fresh eggs</li>
-                    <li>Homemade cheese</li>
-                    <li>Wine</li>
-                    <li>Flour</li>
-                    <li>Fresh vegetables from their gardens</li>
-                </ul>
-            
-                <p>
-                    It was a different world, built on
-                    <strong>honesty, community, and gratitude.</strong>
-                </p>
-            
-                <br>
-            
-                <p>
-                    As a child, I loved following my grandfather into the fields.
-                    What many would call hard work felt like an adventure to me.
-                    Those days became some of the happiest memories of my life —
-                    the smell of fresh earth, homemade bread, tomatoes picked under the summer sun,
-                    and long family meals around the table.
-                </p>
-            
-                <br>
-            
-                <blockquote>
-                    “Looking back now, I feel truly blessed to have lived those experiences,
-                    because they shaped the person I am today.”
-                </blockquote>
-            
-                <br>
-            
-                <p>
-                    The soul of <strong>Mamma Rosa</strong> also comes from my mother, Rosa.
-                    Since she was a little girl, cooking was part of her life.
-                    She learned recipes, techniques, and traditions passed down through generations with
-                    <strong>love, patience, and passion.</strong>
-                </p>
-            
-                <p>
-                    From her, I learned that good food takes time, care,
-                    and respect for ingredients.
-                </p>
-            
-                <br>
-            
-                <p>
-                    Today, our pizzeria brings those values to the table every single day.
-                    We believe in <strong>simple, honest cooking</strong> made with quality ingredients,
-                    inspired by the traditions of true <em>farm-to-table living.</em>
-                </p>
-            
-                <p>
-                    Every pizza carries a piece of our family history —
-                    years of experience, sacrifice, passion, and love for real food.
-                </p>
-            
-                <br>
-            
-                <h2>Mamma Rosa is not just a pizzeria.</h2>
-            
-                <p>
-                    It is a tribute to our family, to traditional Italian village life,
-                    and to all the people who taught us that even with little,
-                    you can create something beautiful when it is made with heart.
-                </p>
-            
-            </section>
-</div>
-<div th:replace="~{fragments/resources :: scripts}"></div>
+                    <h1>Welcome to <strong>Mamma Rosa</strong></h1>
+
+                    <p>
+                        At <strong>Mamma Rosa</strong>, pizza is more than food —
+                        it is </em>memory, tradition, and family.</em>
+                    </p>
+
+                    <p>
+                        Our story begins in a small village where life was simple, people worked hard,
+                        and <strong>nothing was ever wasted.</strong>
+                        We come from humble rural roots, where the land gave us everything and
+                        respect for food was part of everyday life.
+                    </p>
+
+                    <p>
+                        My grandfather worked the fields from sunrise to sunset, growing vegetables, olives, tomatoes,
+                        and everything the seasons could offer.
+                        My other grandfather repaired and handmade shoes for the hardworking people of the village,
+                        and many times they would pay not with money, but with their own produce: <strong>
+                        fresh eggs, homemade cheese, wine, flour, fresh vegetables</strong> from their gardens.
+                        </p>
+                    <br />
+                    <hr />
+                    <p>
+                        It was a different world, built on
+                        <strong>honesty, community and gratitude.</strong>
+                    </p>
+
+                    <p>
+                        As a child, I loved following my grandfather into the fields.
+                        What many would call hard work felt like an adventure to me.
+                        Those days became some of the happiest memories of my life —
+                        the smell of fresh earth, homemade bread, tomatoes picked under the summer sun,
+                        and long family meals around the table.
+                    </p>
+
+                    <blockquote>
+                        “Looking back now, I feel truly blessed to have lived those experiences,
+                        because they shaped the person I am today.”
+                    </blockquote>
+
+                    <p>
+                        The soul of <strong>Mamma Rosa</strong> also comes from my mother, Rosa.
+                        Since she was a little girl, cooking was part of her life.
+                        She learned recipes, techniques, and traditions passed down through generations with
+                        <strong>love, patience, and passion.</strong>
+                    </p>
+
+                    <p>
+                        From her, I learned that good food takes time, care,
+                        and respect for ingredients.
+                    </p>
+
+                    <p>
+                        Today, our pizzeria brings those values to the table every single day.
+                        We believe in <strong>simple, honest cooking</strong> made with <strong>quality ingredients</strong>,
+                        inspired by the traditions of true <em>farm-to-table living.</em>
+                    </p>
+
+                    <p>
+                        Every pizza carries a piece of our family history —
+                        years of experience, sacrifice, passion and love for real food.
+                    </p>
+                    <hr />
+                    <h2>Mamma Rosa is not just a pizzeria.</h2>
+
+                    <p>
+                        It is a tribute to our family, to traditional Italian village life,
+                        and to all the people who taught us that even with little,
+                        you can create something beautiful when it is made with heart.
+                    </p>
+
+                </section>
+            </div>
+        </div>
+    </section>
+    <div th:replace="~{fragments/resources :: scripts}"></div>
 </body>
 
 </html>
