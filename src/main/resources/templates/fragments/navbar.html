@@ -3,17 +3,19 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar(current)">
-        <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}">Pizzeria Mamma Rosa</a>
+        <div class="container-fluid d-flex flex-column align-items-center">
+            <a class="navbar-brand mx-auto" th:href="@{/}">
+                <img th:src="@{/img/logo_brand0.png}" alt="Pizzeria Mamma Rosa" style="height: 200px; width: auto;">
+            </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse justify-content-center w-100" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" th:classappend="${current == 'home'} ? ' active' : ''"
                             th:href="@{/}">Home</a>
@@ -23,8 +25,8 @@
                             th:href="@{/pizzas}">Pizzas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:classappend="${current == 'users'} ? ' active' : ''"
-                            th:href="@{/users}">Clienti</a>
+                        <a class="nav-link" th:classappend="${current == 'contacts'} ? ' active' : ''"
+                            th:href="@{/users}">Contatta</a>
                     </li>
                 </ul>
 
