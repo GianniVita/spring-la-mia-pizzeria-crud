@@ -80,7 +80,7 @@ public class PizzaController {
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        // TODO: process POST request
+        // ! process POST request
         pizzaRepository.deleteById(id);
 
         return "redirect:/pizzas";

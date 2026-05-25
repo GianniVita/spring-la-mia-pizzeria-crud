@@ -1,12 +1,14 @@
 package org.lesson.java.spring_la_mia_pizzeria_crud.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -38,6 +40,9 @@ public class Pizza {
     @Column(name = "photo_url")
     private String photo;
 
+    // * aggiunta di una relazione tra UNA PIZZA e 0,1 o più offerte Speciali
+    @OneToMany( mappedBy = "pizza")
+    private List<Special> specials;
     
     public Integer getId() {
         return this.id;
