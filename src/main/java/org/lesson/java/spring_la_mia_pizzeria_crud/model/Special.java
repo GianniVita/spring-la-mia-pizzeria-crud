@@ -39,5 +39,48 @@ public class Special {
     private String notes;
 
 
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Pizza getPizza() {
+        return this.pizza;
+    }
+
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
+    }
+
+    public LocalDate getSpecialDate() {
+        return this.specialDate;
+    }
+
+    public void setSpecialDate(LocalDate specialDate) {
+        this.specialDate = specialDate;
+    }
+
+    public LocalDate getEndOfSpecialDate() {
+        return this.endOfSpecialDate;
+    }
+
+    public void setEndOfSpecialDate(LocalDate endOfSpecialDate) {
+        this.endOfSpecialDate = endOfSpecialDate;
+    }
+
+    public String getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+
+
     
 }

@@ -43,6 +43,16 @@ public class Pizza {
     // * aggiunta di una relazione tra UNA PIZZA e 0,1 o più offerte Speciali
     @OneToMany( mappedBy = "pizza")
     private List<Special> specials;
+
+
+
+    public List<Special> getSpecials() {
+        return this.specials;
+    }
+
+    public void setSpecials(List<Special> specials) {
+        this.specials = specials;
+    }
     
     public Integer getId() {
         return this.id;
