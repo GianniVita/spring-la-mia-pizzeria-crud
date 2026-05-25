@@ -1,6 +1,7 @@
 package org.lesson.java.spring_la_mia_pizzeria_crud.controller;
 
 import org.lesson.java.spring_la_mia_pizzeria_crud.model.Pizza;
+import org.lesson.java.spring_la_mia_pizzeria_crud.model.Special;
 import org.lesson.java.spring_la_mia_pizzeria_crud.repository.PizzaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,7 +83,16 @@ public class PizzaController {
     public String delete(@PathVariable Integer id) {
         // ! process POST request
         pizzaRepository.deleteById(id);
-
         return "redirect:/pizzas";
     }
+
+    @GetMapping({ "/{id}/special", "/{id}/specials" })
+    public String special(@PathVariable Integer id, Model model) {
+        Special special = new Special();
+        special.setPizza(pizzaRepository.findById(id).get());
+        // ...
+        model.addAttribute("specialDay", special);
+        return "specials/create";
+    }
+
 }
