@@ -39,20 +39,20 @@
                             </td>
                             <td>
                                 <a th:href="@{/pizzas/{id}(id=*{id})}" class="btn btn-sm btn-outline-secondary">
-                                    <i class="fa-solid fa-pizza-slice"></i>
+                                    <i class="fa-solid fa-pizza-slice"> Show</i>
                                 </a>
                             </td>
                             <td>
                                 <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}"
                                     class="btn btn-outline-success btn-sm">
-                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <i class="fa-regular fa-pen-to-square"> Edit</i>
                                 </a>
                             </td>
                             <td>
                                 <!-- bottone che fa partire la modale -->
-                                <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
                                     th:data-bs-target="'#delete-modal-' + ${pizza.id}"><i
-                                        class="fa-solid fa-trash"></i></button>
+                                        class="fa-solid fa-trash"></i> Delete</button>
                                 <!-- ##B:Modale che appare solo dopo il click sul relativo bottone di Delete -->
                                 <div class="modal fade" th:id="'delete-modal-' + ${pizza.id}" tabindex="-1"
                                     aria-labelledby="delete-model" aria-hidden="true">
