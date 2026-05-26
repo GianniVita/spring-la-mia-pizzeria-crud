@@ -92,7 +92,7 @@ public class PizzaController {
         special.setPizza(pizzaRepository.findById(id).get());
         // ...
         model.addAttribute("specialDay", special);
-        return "specials/create";
+        return "specials/create-or-edit";
     }
 
 }

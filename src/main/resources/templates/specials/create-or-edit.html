@@ -22,8 +22,9 @@
                     </h2>
                     <div class="row justify-content-center">
                         <div class="col-8">
-                            <form id="special-form" th:action="@{/specials/create}" th:object="${specialDay}"
-                                method="post">
+                            <form id="special-form"
+                                th:action="${edit != null and edit} ? @{/specials/edit/{id}(id=${specialDay.id})} : @{/specials/create}"
+                                th:object="${specialDay}" method="post">
 
 
 
@@ -63,8 +64,9 @@
 
 
                                 <div class="mb-3 d-flex justify-content-between">
-                                    <input type="submit" class="btn btn-primary" value="Create Special">
-                                    <input type="reset" class="btn btn-warning" value="Reset all fields">
+                                    <input type="submit" class="btn btn-outline-primary"
+                                        th:value="${edit != null and edit} ? 'Update Special' : 'Create Special'">
+                                    <input type="reset" class="btn btn-outline-warning" value="Reset all fields">
                                 </div>
 
                             </form>

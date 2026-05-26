@@ -52,6 +52,7 @@
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Notes</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,6 +61,9 @@
                             <td>[[${special.startSpecialDate}]]</td>
                             <td>[[${special.endOfSpecialDate}]]</td>
                             <td>[[${special.notes}]]</td>
+                            <td>
+                                <a th:href="@{|/specials/edit/${special.id}|}" class="btn btn-outline-success btn-sm">Update</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
