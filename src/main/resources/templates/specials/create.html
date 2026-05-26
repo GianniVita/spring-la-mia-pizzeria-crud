@@ -16,54 +16,58 @@
                 <th:block>
                     <h1 class="py-4 mb-2 text-center fw-bold">
                         Special of the Day pizza [[${specialDay.pizza.name}]]!
-
                     </h1>
                     <h2 class="py-4 mb-2 text-center">
                         price of the pizza Today - [[${specialDay.pizza.price}]]
-
                     </h2>
                     <div class="row justify-content-center">
                         <div class="col-8">
-                            <!-- <form id="pizza-form" th:action="..." th:object="..." method="post">
+                            <form id="special-form" th:action="@{/specials/create}" th:object="${specialDay}"
+                                method="post">
 
+
+
+                                <input type="hidden" th:field="*{pizza.id}" id="linked-pizza">
                                 <div class="mb-3">
-                                    <label class="form-label" for="name">Name:</label>
-                                    <input class="form-control" type="text" id="name" th:field="*{name}"
-                                        th:errorClass="is-invalid">
-                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+                                    <label class="form-label" for="start-special-date">Special-Starts:</label>
+                                    <input class="form-control" type="date" id="start-special"
+                                        th:field="*{startSpecialDate}" th:errorClass="is-invalid">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('startSpecialDate')}">
                                         <ul>
-                                            <li th:each="error : ${#fields.errors('name')}" th:text="${error}" />
+                                            <li th:each="error : ${#fields.errors('startSpecialDate')}"
+                                                th:text="${error}" />
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="title">Price:</label>
-                                    <input class="form-control" type="text" id="price" th:field="*{price}"
-                                        th:errorClass="is-invalid">
-                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
+                                    <label class="form-label" for="end-special-special">Special-Ends:</label>
+                                    <input class="form-control" type="date" id="end-special"
+                                        th:field="*{endOfSpecialDate}" th:errorClass="is-invalid">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('endOfSpecialDate')}">
                                         <ul>
-                                            <li th:each="error : ${#fields.errors('price')}" th:text="${error}" />
+                                            <li th:each="error : ${#fields.errors('endOfSpecialDate')}"
+                                                th:text="${error}" />
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="description">Details:</label>
-                                    <textarea id="description" class="form-control" th:field="*{description}"
+                                    <label class="form-label" for="notes">Notes:</label>
+                                    <textarea id="notes" class="form-control" th:field="*{notes}"
                                         th:errorClass="is-invalid"></textarea>
-                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('synopsis')}">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('notes')}">
                                         <ul>
-                                            <li th:each="error : ${#fields.errors('description')}" th:text="${error}" />
+                                            <li th:each="error : ${#fields.errors('notes')}" th:text="${error}" />
                                         </ul>
                                     </div>
                                 </div>
 
 
                                 <div class="mb-3 d-flex justify-content-between">
-                                    <input type="submit" class="btn btn-primary" value="Create new Book">
+                                    <input type="submit" class="btn btn-primary" value="Create Special">
                                     <input type="reset" class="btn btn-warning" value="Reset all fields">
                                 </div>
 
-                            </form> -->
+                            </form>
 
                         </div>
                     </div>

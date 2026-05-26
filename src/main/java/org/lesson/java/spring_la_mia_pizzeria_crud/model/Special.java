@@ -1,11 +1,11 @@
 package org.lesson.java.spring_la_mia_pizzeria_crud.model;
 
 import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
@@ -22,23 +22,22 @@ public class Special {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    //*pizza da cui dipendo
+    // *pizza da cui dipendo
     @ManyToOne
-    @JoinColumn(name = "pizza_id, nullable = false") 
+    @JoinColumn(name = "pizza_id", nullable = false)
     private Pizza pizza;
 
     @NotNull(message = "The start of special date can't be null")
-    @PastOrPresent(message = "The special date must start in currente day")
-    private LocalDate specialDate;
+    @PastOrPresent(message = "The special promotion must start on the current day")
+    @Column(name = "startspecial_date", nullable = false)
+    private LocalDate startSpecialDate;
 
     @NotNull(message = "The end of the special date can't be null")
-    @FutureOrPresent(message = "The end of special day must finisch on same day or shortly afther")
+    @FutureOrPresent(message = "The end of the special promotion must end on the same day or a few days later")
     private LocalDate endOfSpecialDate;
 
     @Lob
     private String notes;
-
-
 
     public Integer getId() {
         return this.id;
@@ -56,12 +55,12 @@ public class Special {
         this.pizza = pizza;
     }
 
-    public LocalDate getSpecialDate() {
-        return this.specialDate;
+    public LocalDate getStartSpecialDate() {
+        return this.startSpecialDate;
     }
 
-    public void setSpecialDate(LocalDate specialDate) {
-        this.specialDate = specialDate;
+    public void setStartSpecialDate(LocalDate startSpecialDate) {
+        this.startSpecialDate = startSpecialDate;
     }
 
     public LocalDate getEndOfSpecialDate() {
@@ -80,7 +79,4 @@ public class Special {
         this.notes = notes;
     }
 
-
-
-    
 }
