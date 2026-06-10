@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <div th:replace="~{fragments/resources :: headTags}"></div>
@@ -10,17 +10,17 @@
     <nav th:replace="~{fragments/navbar :: navbar('ingredients')}"></nav>
     <hr />
     <main class="container py-4">
-        <h1>Ingredients</h1>
+        <h1 class="py-4 mb-2 text-center">Ingredients</h1>
 
         <div class="mb-3 d-flex">
-            <a th:href="@{/ingredients/create}" class="me-auto btn btn-sm btn-outline-prymary">
-            <i class="fa-solid fa-circle-plus">Create Ingredient</i> 
+            <a th:href="@{/ingredients/create}" class="me-auto btn btn-sm btn-outline-primary">
+                <i class="fa-solid fa-circle-plus"> Create Ingredient</i>
             </a>
         </div>
 
         <section class="row">
             <div class="col-12">
-                <table class="table" th:if="${ingredients.size() > 0}">
+                <table class="table" th:if="${not #lists.isEmpty(ingredients)}">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -36,23 +36,26 @@
                         <tr th:each="ingredient : ${ingredients}" th:object="${ingredient}">
                             <td>[[*{id}]]</td>
                             <td>[[*{name}]]</td>
-                            <td>[[*{pizzas.size()}]]</td>
-                           
+                            <td>[[*{description}]]</td>
+                            <td>[[*{pizzas != null ? pizzas.size() : 0}]]</td>
+
                             <td>
-                                <a th:href="@{/ingredients/{id}(id=${ingredient.id})}" class="btn btn-sm btn-outline-secondary">
-                                    <i class="fa-solid fa-pizza-slice"> Show</i>
+                                <a th:href="@{/ingredients/{id}(id=${ingredient.id})}"
+                                    class="btn btn-sm btn-outline-secondary">
+                                    <i class="fa-solid fa-pizza-slice"></i>Show
                                 </a>
                             </td>
                             <td>
                                 <a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}"
                                     class="btn btn-outline-success btn-sm">
-                                    <i class="fa-regular fa-pen-to-square"> Edit</i>
+                                    <i class="fa-regular fa-pen-to-square"></i>Edit
                                 </a>
                             </td>
                             <td>
                                 <!-- bottone che fa partire la modale -->
                                 <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                    th:data-bs-target="'#delete-modal-' + ${ingredient.id}"><i class="fa-solid fa-trash"></i>
+                                    th:data-bs-target="'#delete-modal-' + ${ingredient.id}"><i
+                                        class="fa-solid fa-trash"></i>
                                     Delete</button>
                                 <!-- ##B:Modale che appare solo dopo il click sul relativo bottone di Delete -->
                                 <div class="modal fade" th:id="'delete-modal-' + ${ingredient.id}" tabindex="-1"
@@ -76,7 +79,8 @@
                                                     data-bs-dismiss="modal">Close</button>
                                                 <!-- vero bottone della modale che fa partire la nostra  action di cancellazione chiamiamo il metodo delete   -->
                                                 <form class="d-inline-block"
-                                                    th:action="@{/ingredients/delete/{id}(id=${ingredient.id})}" method="post">
+                                                    th:action="@{/ingredients/delete/{id}(id=${ingredient.id})}"
+                                                    method="post">
                                                     <button type="submit" class="btn btn-outline-danger">
                                                         Delete
                                                     </button>
@@ -90,7 +94,7 @@
                     </tbody>
                 </table>
 
-                <p th:text="No ingredients available at the moment .... sorry" th:unless="${ingredients.size() > 0}"></p>
+                <p th:if="${#lists.isEmpty(ingredients)}">No ingredients available at the moment... sorry.</p>
 
             </div>
 

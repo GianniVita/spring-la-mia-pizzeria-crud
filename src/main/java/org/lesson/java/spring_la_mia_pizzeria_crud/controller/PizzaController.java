@@ -32,7 +32,7 @@ public class PizzaController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable Integer id, Model model) {
-        Pizza pizza = pizzaRepository.findById(id).orElseThrow();
+        Pizza pizza = pizzaRepository.findById(id).get();
         model.addAttribute("pizza", pizza);
         return "pizzas/show";
     }

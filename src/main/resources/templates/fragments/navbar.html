@@ -5,7 +5,8 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar(current)">
         <div class="container-fluid d-flex flex-column align-items-center">
             <a class="navbar-brand mx-auto" th:href="@{/}">
-                <img th:src="@{/img/logo_brand0.png}" alt="Pizzeria Mamma Rosa" style="height: 140px; width: 260px; object-fit: fill;">
+                <img th:src="@{/img/logo_brand0.png}" alt="Pizzeria Mamma Rosa"
+                    style="height: 140px; width: 260px; object-fit: fill;">
             </a>
 
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
@@ -25,8 +26,12 @@
                             th:href="@{/pizzas}">Pizzas</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" th:classappend="${current == 'ingredients'} ? ' active' : ''"
+                            th:href="@{/ingredients}">Ingredients</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" th:classappend="${current == 'contacts'} ? ' active' : ''"
-                            th:href="@{/users}">Contatta</a>
+                            th:href="@{/users}">Contacts</a>
                     </li>
                 </ul>
 
