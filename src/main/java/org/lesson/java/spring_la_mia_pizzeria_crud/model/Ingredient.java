@@ -13,7 +13,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table( name = "ingredients")
+@Table(name = "ingredients")
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +26,8 @@ public class Ingredient {
     @Lob
     private String description;
 
-    @ManyToMany(mappedBy = "ingrediends")
+    @ManyToMany(mappedBy = "ingredients")
     private List<Pizza> pizzas;
-
 
     public Integer getId() {
         return this.id;
@@ -53,7 +52,6 @@ public class Ingredient {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
     public List<Pizza> getPizzas() {
         return this.pizzas;

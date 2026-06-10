@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/resources :: headTags}"></div>
+    <title>Ingredients</title>
+</head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar('ingredients')}"></nav>
+    <hr />
+    <main class="container py-4">
+        <h1>Ingredients</h1>
+
+        <div class="mb-3 d-flex">
+            <a th:href="@{/ingredients/create}" class="me-auto btn btn-sm btn-outline-prymary">
+            <i class="fa-solid fa-circle-plus">Create Ingredient</i> 
+            </a>
+        </div>
+
+        <section class="row">
+            <div class="col-12">
+                <table class="table" th:if="${ingredients.size() > 0}">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Number of pizzas</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ingredient : ${ingredients}" th:object="${ingredient}">
+                            <td>[[*{id}]]</td>
+                            <td>[[*{name}]]</td>
+                            <td>[[*{pizzas.size()}]]</td>
+                           
+                            <td>
+                                <a th:href="@{/ingredients/{id}(id=${ingredient.id})}" class="btn btn-sm btn-outline-secondary">
+                                    <i class="fa-solid fa-pizza-slice"> Show</i>
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}"
+                                    class="btn btn-outline-success btn-sm">
+                                    <i class="fa-regular fa-pen-to-square"> Edit</i>
+                                </a>
+                            </td>
+                            <td>
+                                <!-- bottone che fa partire la modale -->
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                    th:data-bs-target="'#delete-modal-' + ${ingredient.id}"><i class="fa-solid fa-trash"></i>
+                                    Delete</button>
+                                <!-- ##B:Modale che appare solo dopo il click sul relativo bottone di Delete -->
+                                <div class="modal fade" th:id="'delete-modal-' + ${ingredient.id}" tabindex="-1"
+                                    aria-labelledby="delete-model" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                    Deleting "[[${ingredient.name}]]"
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete a ingredient named:
+                                                <strong>"[[${ingredient.name}]]"</strong>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!-- bototone da cliccare senza la modale senza effetti -->
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <!-- vero bottone della modale che fa partire la nostra  action di cancellazione chiamiamo il metodo delete   -->
+                                                <form class="d-inline-block"
+                                                    th:action="@{/ingredients/delete/{id}(id=${ingredient.id})}" method="post">
+                                                    <button type="submit" class="btn btn-outline-danger">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p th:text="No ingredients available at the moment .... sorry" th:unless="${ingredients.size() > 0}"></p>
+
+            </div>
+
+        </section>
+    </main>
+    <div th:replace="~{fragments/resources :: scripts}"></div>
+</body>
+
+</html>
