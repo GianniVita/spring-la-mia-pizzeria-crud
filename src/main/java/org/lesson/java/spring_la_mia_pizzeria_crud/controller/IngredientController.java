@@ -1,7 +1,11 @@
 package org.lesson.java.spring_la_mia_pizzeria_crud.controller;
 
 import org.lesson.java.spring_la_mia_pizzeria_crud.repository.IngredientRepository;
+
+
+
 import org.lesson.java.spring_la_mia_pizzeria_crud.model.Ingredient;
+import org.lesson.java.spring_la_mia_pizzeria_crud.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import jakarta.validation.Valid;
+
+
+
 
 @Controller
 @RequestMapping("/ingredients")
@@ -29,7 +36,7 @@ public class IngredientController {
         return "ingredients/index";
     }
 
-    @GetMapping("/{id")
+    @GetMapping("/{id}")
     public String show(@PathVariable Integer id, Model model) {
         model.addAttribute("ingredient", ingredientRepository.findById(id).get());
         return "ingredients/show";
@@ -51,5 +58,35 @@ public class IngredientController {
         return "redirect:/ingredients";
     }
 
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("ingredient", ingredientRepository.findById(id).get());
+        model.addAttribute("edit", true);
+        return "ingredients/create-or-edit";
+    }
+    @PostMapping("/edit/{id}")
+    public String edit(@Valid @ModelAttribute("ingredient") Ingredient ingredient,BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "/ingredients/edit";
+        }
+
+        ingredientRepository.save(ingredient);
+        return "redirect:/ingredients";
+    }
+    
+    @PostMapping("delete/{id}")
+    public String delete(@PathVariable Integer id){
+
+        Ingredient ingredientToDelete = ingredientRepository.findById(id).get();
+
+        for (Pizza linkedPizza : ingredientToDelete.getPizzas()){
+            linkedPizza.getIngredients().remove(ingredientToDelete);
+        }
+
+        ingredientRepository.delete(ingredientToDelete);
+
+        return "redirect:/ingredients";
+    }
 
 }

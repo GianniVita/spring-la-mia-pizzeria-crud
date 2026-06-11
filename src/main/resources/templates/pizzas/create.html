@@ -32,8 +32,17 @@
                                         </ul>
                                     </div>
                                 </div>
+
+                                <div class="mb3">
+                                    <label class="form-lable">Ingredients:</label>
+                                    <div class="single-ingredient form-check" th:each="ingredient : ${ingredients}">
+                                        <input class="form-check-input" type="checkbox" th:id="|ingredient-${ingredient.id}|" th:field="*{ingredients}" th:value="${ingredient.id}">
+                                        <label class="form-check-label" th:for="|ingredient-${ingredient.id}|" th:text="${ingredient.name}"></label>
+                                    </div>
+                                </div>
+
                                 <div class="mb-3">
-                                    <label class="form-label" for="title">Price:</label>
+                                    <label class="form-label" for="price">Price:</label>
                                     <input class="form-control" type="text" id="price" th:field="*{price}"
                                         th:errorClass="is-invalid">
                                     <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">

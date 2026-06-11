@@ -114,5 +114,10 @@ public class Pizza {
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s: %s, price: %s, photo: %s", this.name, this.description, this.price, this.photo);
+    }
     
 }
