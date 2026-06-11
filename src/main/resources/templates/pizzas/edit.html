@@ -53,12 +53,26 @@
                                     </div>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label class="form-label">Ingredients:</label>
+                                    <div class="single-ingredient form-check" th:each="ingredient : ${ingredients}">
+                                        <input class="form-check-input" type="checkbox"
+                                            th:id="|ingredient-${ingredient.id}|" th:field="*{ingredients}"
+                                            th:value="${ingredient.id}">
+                                        <label class="form-check-label" th:for="|ingredient-${ingredient.id}|"
+                                            th:text="${ingredient.name}"></label>
+                                    </div>
+                                    <p class="text-muted mb-0" th:if="${#lists.isEmpty(ingredients)}">
+                                        No ingredients available yet. Create ingredients first.
+                                    </p>
+                                </div>
+
 
                                 <div class="mb-3 d-flex justify-content-between">
                                     <input type="submit" class="btn btn-outline-primary" value="Update Pizza">
 
                                     <!-- add btn that goes back to the pizzas list -->
-                                     
+
                                     <input type="reset" class="btn btn-outline-warning" value="Reset all fields">
                                 </div>
 

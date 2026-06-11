@@ -31,6 +31,15 @@
                     <a th:href="@{/pizzas}" class="btn btn-outline-secondary">← Back to list</a>
                 </div>
             </div>
+            <th:block th:if="${pizza.getIngredients().size() > 0}">
+                <h3 class="mb-2">Ingredients</h3>
+                <ul class="mb-3 ps-4">
+                    <li th:each="ingredient : *{ingredients}" th:text="${ingredient.name}" />
+                </ul>
+            </th:block>
+            <th:block th:unless="${pizza.getIngredients().size() > 0 }">
+                <p class="mb-3 alert alert-info">This pizza as no ingredients listed yet!</p>
+            </th:block>
         </section>
 
         <section class="row mb-3 specials">

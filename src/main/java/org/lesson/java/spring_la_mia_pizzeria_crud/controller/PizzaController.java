@@ -57,6 +57,7 @@ public class PizzaController {
             BindingResult bindingResult,
             Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("ingredients", ingredientRepository.findAll());
             return "pizzas/create";
         } else {
             // salvare il dato
@@ -69,6 +70,7 @@ public class PizzaController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("ingredients", ingredientRepository.findAll());
         Pizza pizza = pizzaRepository.findById(id).orElseThrow();
         model.addAttribute("pizza", pizza);
 
@@ -77,9 +79,11 @@ public class PizzaController {
 
     @PostMapping("/edit/{id}")
     public String update(@Valid @ModelAttribute("pizza") Pizza formPizza,
-            BindingResult bindingResult,
+            BindingResult bindingResult,Model model,
             @PathVariable("id") Integer id) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("ingredients", ingredientRepository.findAll());
+
             return "pizzas/edit";
         }
 
