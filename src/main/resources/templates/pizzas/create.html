@@ -36,9 +36,15 @@
                                 <div class="mb3">
                                     <label class="form-lable">Ingredients:</label>
                                     <div class="single-ingredient form-check" th:each="ingredient : ${ingredients}">
-                                        <input class="form-check-input" type="checkbox" th:id="|ingredient-${ingredient.id}|" th:field="*{ingredients}" th:value="${ingredient.id}">
-                                        <label class="form-check-label" th:for="|ingredient-${ingredient.id}|" th:text="${ingredient.name}"></label>
+                                        <input class="form-check-input" type="checkbox"
+                                            th:id="|ingredient-${ingredient.id}|" th:field="*{ingredients}"
+                                            th:value="${ingredient.id}">
+                                        <label class="form-check-label" th:for="|ingredient-${ingredient.id}|"
+                                            th:text="${ingredient.name}"></label>
                                     </div>
+                                    <p class="text-muted mb-0" th:if="${#lists.isEmpty(ingredients)}">
+                                        No ingredients available yet. Create ingredients first.
+                                    </p>
                                 </div>
 
                                 <div class="mb-3">
@@ -55,16 +61,18 @@
                                     <label class="form-label" for="description">Details:</label>
                                     <textarea id="description" class="form-control" th:field="*{description}"
                                         th:errorClass="is-invalid"></textarea>
-                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('synopsis')}">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
                                         <ul>
                                             <li th:each="error : ${#fields.errors('description')}" th:text="${error}" />
                                         </ul>
                                     </div>
                                 </div>
 
-                                
+
                                 <div class="mb-3 d-flex justify-content-between">
-                                    <input type="submit" class="btn btn-primary" value="Create new Book">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa-solid fa-floppy-disk"></i> Save Pizza
+                                    </button>
                                     <input type="reset" class="btn btn-warning" value="Reset all fields">
                                 </div>
 

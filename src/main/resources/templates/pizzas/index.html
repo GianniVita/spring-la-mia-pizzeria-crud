@@ -11,6 +11,12 @@
     <hr />
     <main class="container py-4">
 
+        <div class="mb-3 d-flex">
+            <a th:href="@{/pizzas/create}" class="me-auto btn btn-sm btn-outline-primary">
+                <i class="fa-solid fa-circle-plus"></i> Create New Pizza
+            </a>
+        </div>
+
 
         <section class="row">
             <div class="col-12">
@@ -51,8 +57,8 @@
                             <td>
                                 <!-- bottone che fa partire la modale -->
                                 <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                    th:data-bs-target="'#delete-modal-' + ${pizza.id}"><i
-                                        class="fa-solid fa-trash"> Delete</i></button>
+                                    th:data-bs-target="'#delete-modal-' + ${pizza.id}"><i class="fa-solid fa-trash">
+                                        Delete</i></button>
                                 <!-- ##B:Modale che appare solo dopo il click sul relativo bottone di Delete -->
                                 <div class="modal fade" th:id="'delete-modal-' + ${pizza.id}" tabindex="-1"
                                     aria-labelledby="delete-model" aria-hidden="true">
@@ -89,7 +95,7 @@
                     </tbody>
                 </table>
 
-                <p th:text="No pizzas available at the moment .... sorry" th:unless="${pizzas.size() > 0}"></p>
+                <p th:unless="${pizzas.size() > 0}">No pizzas available at the moment... sorry.</p>
 
             </div>
 

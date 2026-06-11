@@ -2,6 +2,8 @@ package org.lesson.java.spring_la_mia_pizzeria_crud.controller;
 
 import org.lesson.java.spring_la_mia_pizzeria_crud.model.Pizza;
 import org.lesson.java.spring_la_mia_pizzeria_crud.model.Special;
+import org.lesson.java.spring_la_mia_pizzeria_crud.model.Ingredient;
+import org.lesson.java.spring_la_mia_pizzeria_crud.repository.IngredientRepository;
 import org.lesson.java.spring_la_mia_pizzeria_crud.repository.PizzaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +21,16 @@ import jakarta.validation.Valid;
 public class PizzaController {
 
     private final PizzaRepository pizzaRepository;
+    private final IngredientRepository ingredientRepository;
 
-    public PizzaController(PizzaRepository pizzaRepository) {
+    public PizzaController(PizzaRepository pizzaRepository, IngredientRepository ingredientRepository) {
         this.pizzaRepository = pizzaRepository;
+        this.ingredientRepository = ingredientRepository;
+    }
+
+    @ModelAttribute("ingredients")
+    public Iterable<Ingredient> ingredients() {
+        return ingredientRepository.findAll();
     }
 
     @GetMapping
